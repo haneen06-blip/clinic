@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>حجز موعد | نبض</title>
+  <meta name="description" content="احجز موعدك في عيادة نبض الطبية بكل سهولة ويسر">
+  
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar scrolled">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-circle">
+          <img src="images/logo.png" alt="نبض">
+        </div>
+        <span class="nav-logo-text">نبض</span>
+      </a>
+      
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+        <li><a href="index.html#about" class="nav-link">من نحن</a></li>
+        <li><a href="index.html#services" class="nav-link">خدماتنا</a></li>
+        <li><a href="index.html#doctors" class="nav-link">الأطباء</a></li>
+        <li><a href="index.html#contact" class="nav-link">تواصل معنا</a></li>
+        <li><a href="booking.html" class="nav-cta">احجز موعد</a></li>
+      </ul>
+      
+      <button class="nav-toggle" aria-label="قائمة التنقل">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Booking Page -->
+  <section class="booking-page">
+    <div class="booking-container">
+      <div class="booking-header" data-aos="fade-up">
+        <h1 class="section-title">احجز موعدك</h1>
+        <p class="section-subtitle">
+          احجز موعدك في عيادة نبض بكل سهولة ويسر. فريقنا جاهز لخدمتك.
+        </p>
+      </div>
+      
+      <form class="booking-form" id="booking-form" data-aos="fade-up" data-aos-delay="100">
+        <!-- Personal Information -->
+        <div class="form-section">
+          <h3 class="form-section-title">
+            <i class="fas fa-user"></i>
+            البيانات الشخصية
+          </h3>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">
+                الاسم الكامل <span class="required">*</span>
+              </label>
+              <input type="text" id="patientName" class="form-input" placeholder="أدخل اسمك الكامل" required autocomplete="name">
+              <span class="form-error">يرجى إدخال الاسم الكامل</span>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                رقم الهاتف <span class="required">*</span>
+              </label>
+              <input type="tel" id="phone" class="form-input" placeholder="01xxxxxxxxx" required autocomplete="tel">
+              <span class="form-error">رقم الهاتف يجب أن يبدأ بـ 01 ويتكون من 11 رقم</span>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">
+                البريد الإلكتروني <span class="required">*</span>
+              </label>
+              <input type="email" id="email" class="form-input" placeholder="example@email.com" required autocomplete="email">
+              <span class="form-error">يرجى إدخال بريد إلكتروني صحيح</span>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">القسم / التخصص</label>
+              <select id="department" class="form-select">
+                <option value="">اختر التخصص</option>
+                <option value="Cardiology">القلب والأوعية الدموية</option>
+                <option value="Dermatology">الجلدية</option>
+                <option value="Orthopedics">العظام والمفاصل</option>
+                <option value="Pediatrics">الأطفال</option>
+                <option value="Neurology">المخ والأعصاب</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Appointment Details -->
+        <div class="form-section">
+          <h3 class="form-section-title">
+            <i class="fas fa-calendar-alt"></i>
+            تفاصيل الموعد
+          </h3>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">الطبيب <span class="required">*</span></label>
+              <select id="doctorId" class="form-select" required>
+                <option value="">اختر الطبيب</option>
+              </select>
+              <span class="form-error">يرجى اختيار الطبيب</span>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">التاريخ <span class="required">*</span></label>
+              <input type="date" id="appointmentDate" class="form-input" required>
+              <span class="form-error">يرجى اختيار التاريخ</span>
+            </div>
+          </div>
+          
+          <div class="form-group full-width">
+            <label class="form-label">الوقت المتاح <span class="required">*</span></label>
+            <div class="time-slots" id="timeSlots"></div>
+            <input type="hidden" id="selectedTime">
+            <span class="form-error">يرجى اختيار الوقت</span>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary booking-submit" id="submitBtn">
+          <span class="btn-text">
+            <i class="fas fa-calendar-check"></i>
+            تأكيد الحجز
+          </span>
+          <span class="btn-loading">
+            <span class="spinner"></span>
+            جاري الحجز...
+          </span>
+        </button>
+      </form>
+      
+      <!-- Success Message -->
+      <div class="booking-success hidden" id="bookingSuccess">
+        <div class="success-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h2>تم الحجز بنجاح!</h2>
+        <p>شكراً لك! تم حجز موعدك بنجاح. سنتواصل معك قريباً للتأكيد.</p>
+        <div class="success-details" id="successDetails"></div>
+        <div class="success-actions">
+          <a href="appointments.html" class="btn btn-primary">
+            <i class="fas fa-list"></i>
+            عرض مواعيدي
+          </a>
+          <a href="index.html" class="btn btn-secondary">
+            <i class="fas fa-home"></i>
+            الرئيسية
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="nav-logo-circle">
+              <img src="images/logo.png" alt="نبض">
+            </div>
+            <span>نبض</span>
+          </div>
+          <p class="footer-description">عيادة نبض الطبية - نبض الحياة بين يديك.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="انستجرام"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="index.html#about">من نحن</a></li>
+            <li><a href="index.html#services">خدماتنا</a></li>
+            <li><a href="index.html#doctors">الأطباء</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h4>الدعم</h4>
+          <ul>
+            <li><a href="booking.html">حجز موعد</a></li>
+            <li><a href="appointments.html">مواعيدي</a></li>
+            <li><a href="index.html#contact">تواصل معنا</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h4>تواصل معنا</h4>
+          <ul>
+            <li><i class="fas fa-phone"></i> 01012345678</li>
+            <li><i class="fas fa-envelope"></i> info@nabd-clinic.com</li>
+            <li><i class="fas fa-map-marker-alt"></i> كفر الشيخ، شارع الجيش، خلف كلية الذكاء الاصطناعي</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 عيادة نبض الطبية. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+  <script>
+    // Global variables
+    let doctors = [];
+    let selectedTimeSlot = null;
+    
+    // DOM Elements
+    const form = document.getElementById('booking-form');
+    const patientNameInput = document.getElementById('patientName');
+    const phoneInput = document.getElementById('phone');
+    const emailInput = document.getElementById('email');
+    const departmentSelect = document.getElementById('department');
+    const doctorSelect = document.getElementById('doctorId');
+    const dateInput = document.getElementById('appointmentDate');
+    const timeSlotsContainer = document.getElementById('timeSlots');
+    const selectedTimeInput = document.getElementById('selectedTime');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', init);
+    
+    function init() {
+      initDatePicker();
+      loadDoctors();
+      loadTimeSlots();
+      initEventListeners();
+    }
+    
+    function initDatePicker() {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.min = today;
+      dateInput.value = today;
+    }
+    
+    async function loadDoctors() {
+      try {
+        doctors = await NabdClinic.API.doctors.getAll();
+        renderDoctors(doctors);
+      } catch (error) {
+        console.error('Error loading doctors:', error);
+        // Fallback to mock data if API fails
+        doctors = NabdClinic.MockData.doctors;
+        renderDoctors(doctors);
+      }
+    }
+    
+    function renderDoctors(doctorList) {
+      doctorSelect.innerHTML = '<option value="" disabled selected>اختر الطبيب المناسب...</option>';
+      doctorList.forEach((doctor, index) => {
+        const option = document.createElement('option');
+        option.value = doctor.id;
+        const specialtyLabel = NabdClinic.API.doctors.getSpecialtyLabel(doctor.specialization);
+        
+        // جلب السعر من البيانات أو تعيين سعر افتراضي (بناءً على التعديلات السابقة في main.js)
+        const prices = [400, 450, 500, 550, 600, 650, 700, 750, 800];
+        const price = doctor.price || prices[index % prices.length];
+        
+        option.textContent = `د. ${doctor.name} - ${specialtyLabel} (سعر الكشف: ${price} ج.م)`;
+        option.classList.add('select-animated');
+        doctorSelect.appendChild(option);
+      });
+      
+      // إزالة أي فراغات بيضاء أو أخطاء في العرض
+      doctorSelect.style.opacity = "1";
+      doctorSelect.style.visibility = "visible";
+    }
+    
+    function loadTimeSlots() {
+      const slots = NabdClinic.API.appointments.generateTimeSlots();
+      
+      timeSlotsContainer.innerHTML = slots.map(slot => 
+        `<button type="button" class="time-slot" data-time="${slot}">${NabdClinic.Utils.formatTime(slot)}</button>`
+      ).join('');
+      
+      timeSlotsContainer.querySelectorAll('.time-slot').forEach(btn => {
+        btn.addEventListener('click', () => selectTimeSlot(btn));
+      });
+    }
+    
+    function selectTimeSlot(btn) {
+      timeSlotsContainer.querySelectorAll('.time-slot').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedTimeSlot = btn.dataset.time;
+      selectedTimeInput.value = selectedTimeSlot;
+      timeSlotsContainer.closest('.form-group').classList.remove('error');
+    }
+    
+    function initEventListeners() {
+      departmentSelect.addEventListener('change', () => {
+        const dept = departmentSelect.value;
+        if (dept) {
+          renderDoctors(doctors.filter(d => d.specialization === dept));
+        } else {
+          renderDoctors(doctors);
+        }
+      });
+      
+      form.addEventListener('submit', handleSubmit);
+    }
+    
+    async function handleSubmit(e) {
+      e.preventDefault();
+      
+      // Form Validation
+      NabdClinic.FormUtils.clearAllErrors(form);
+      let isValid = true;
+      
+      if (!NabdClinic.FormUtils.validateRequired(patientNameInput.value)) {
+        NabdClinic.FormUtils.showError(patientNameInput, 'يرجى إدخال الاسم الكامل');
+        isValid = false;
+      }
+      
+      if (!NabdClinic.FormUtils.validatePhone(phoneInput.value)) {
+        NabdClinic.FormUtils.showError(phoneInput, 'رقم الهاتف يجب أن يبدأ بـ 01 ويتكون من 11 رقم');
+        isValid = false;
+      }
+      
+      if (!NabdClinic.FormUtils.validateEmail(emailInput.value)) {
+        NabdClinic.FormUtils.showError(emailInput, 'يرجى إدخال بريد إلكتروني صحيح');
+        isValid = false;
+      }
+      
+      if (!doctorSelect.value) {
+        NabdClinic.FormUtils.showError(doctorSelect, 'يرجى اختيار الطبيب');
+        isValid = false;
+      }
+      
+      if (!dateInput.value) {
+        NabdClinic.FormUtils.showError(dateInput, 'يرجى اختيار التاريخ');
+        isValid = false;
+      }
+      
+      if (!selectedTimeSlot) {
+        const group = timeSlotsContainer.closest('.form-group');
+        group.classList.add('error');
+        isValid = false;
+      }
+      
+      if (!isValid) return;
+      
+      // Show loading
+      NabdClinic.FormUtils.setLoading(submitBtn, true);
+      
+      try {
+        // Patient handling
+        let patient;
+        const patientData = {
+          name: patientNameInput.value.trim(),
+          phone: phoneInput.value.trim(),
+          email: emailInput.value.trim()
+        };
+        
+        console.log('Starting booking process with patient data:', patientData);
+        
+        try {
+          // Check if patient exists first
+          console.log('Checking if patient exists with email:', patientData.email);
+          patient = await NabdClinic.API.patients.getByEmail(patientData.email);
+          console.log('Patient found:', patient);
+          // If exists, optionally update their phone if it changed
+          if (patient.phone !== patientData.phone) {
+             console.log('Updating patient phone...');
+             patient = await NabdClinic.API.patients.update(patient.id, patientData);
+             console.log('Patient updated:', patient);
+          }
+        } catch (err) {
+          console.log('Patient lookup error:', err, 'Status:', err.status);
+          // If not found (404), create new
+          if (err.status === 404) {
+            console.log('Creating new patient...');
+            patient = await NabdClinic.API.patients.create(patientData);
+            console.log('New patient created:', patient);
+          } else {
+            throw err;
+          }
+        }
+        
+        // Create appointment
+        const appointmentData = {
+          date: dateInput.value,
+          time: selectedTimeSlot,
+          doctorId: parseInt(doctorSelect.value),
+          patientId: patient.id,
+          status: 'Pending'
+        };
+        
+        console.log('Creating appointment with data:', appointmentData);
+        const appointment = await NabdClinic.API.appointments.create(appointmentData);
+        console.log('Appointment created:', appointment);
+        
+        // Show success
+        showSuccess(appointment, patient);
+        
+      } catch (error) {
+        console.error('Booking error:', error);
+        NabdClinic.Toast.error(error.message || 'حدث خطأ أثناء الحجز');
+      } finally {
+        NabdClinic.FormUtils.setLoading(submitBtn, false);
+      }
+    }
+    
+    function showSuccess(appointment, patient) {
+      form.classList.add('hidden');
+      const successEl = document.getElementById('bookingSuccess');
+      successEl.classList.remove('hidden');
+      successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      const doctor = doctors.find(d => d.id === parseInt(doctorSelect.value));
+      
+      document.getElementById('successDetails').innerHTML = `
+        <div class="success-detail"><i class="fas fa-user"></i><span>المريض: ${patient.name}</span></div>
+        <div class="success-detail"><i class="fas fa-user-md"></i><span>الطبيب: ${doctor ? doctor.name : ''}</span></div>
+        <div class="success-detail"><i class="fas fa-calendar"></i><span>التاريخ: ${NabdClinic.Utils.formatDate(appointment.date)}</span></div>
+        <div class="success-detail"><i class="fas fa-clock"></i><span>الوقت: ${NabdClinic.Utils.formatTime(appointment.time)}</span></div>
+        <div class="success-detail"><i class="fas fa-info-circle"></i><span>الحالة: قيد المراجعة</span></div>
+      `;
+      
+      NabdClinic.Toast.success('تم الحجز بنجاح!');
+    }
+  </script>
+  
+  <style>
+    .form-section {
+      margin-bottom: 35px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .form-section:last-of-type {
+      border-bottom: none;
+      margin-bottom: 20px;
+    }
+    
+    .form-section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: var(--text-primary);
+    }
+    
+    .form-section-title i { color: var(--accent-cyan); }
+    
+    .booking-success {
+      text-align: center;
+      padding: 50px 30px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-lg);
+    }
+    
+    .success-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 30px;
+      background: rgba(0, 200, 83, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .success-icon i { font-size: 3rem; color: #00c853; }
+    
+    .booking-success h2 { font-size: 2rem; margin-bottom: 15px; color: var(--text-primary); }
+    .booking-success p { color: var(--text-secondary); margin-bottom: 30px; }
+    
+    .success-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+      padding: 25px;
+      background: var(--bg-glass);
+      border-radius: var(--border-radius-md);
+    }
+    
+    .success-detail { display: flex; align-items: center; gap: 10px; color: var(--text-secondary); }
+    .success-detail i { color: var(--accent-cyan); }
+    
+    .success-actions { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+    
+    @media (max-width: 768px) {
+      .booking-success { padding: 30px 20px; }
+      .success-actions { flex-direction: column; }
+      .success-actions .btn { width: 100%; }
+    }
+  </style>
+</body>
+</html>
